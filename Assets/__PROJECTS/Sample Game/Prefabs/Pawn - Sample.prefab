@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6256003986617114621}
   - component: {fileID: 5654144500314236601}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730887314905201829}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Distance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3765257413991403270}
   - component: {fileID: 3800323295418737475}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: VCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2547840432682874633}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Owner Only Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 7536350393418903885}
   - component: {fileID: 5645883853803553852}
   - component: {fileID: 6401930130927510694}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 88793416999759648}
   - component: {fileID: 1112057642766710861}
   - component: {fileID: 7144459200608394061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Motor
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -417,7 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5464377247294043493}
   - component: {fileID: 1096644315589665506}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469054829446759768}
   - component: {fileID: 5690994671041342031}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: VCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813100902274408884}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Third Person View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6235386279947638386}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: First Person View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 715402871275488317}
   - component: {fileID: 901930424312372469}
   - component: {fileID: 6643339058445159547}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3420723179497671879}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pitch Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9006022907395186172}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Camera Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 755152559026963051}
   - component: {fileID: 8845303970484493412}
   - component: {fileID: 6336564512091671728}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pawn - Sample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,6 +909,11 @@ MonoBehaviour:
   Sensitivity: 1
   ViewFirst: {fileID: 6201769277665676933}
   ViewThird: {fileID: 6151768825897100124}
+  ThirdPersonDistance: 2.75
+  ThirdPersonRaycastRadius: 0.5
+  ThirdPersonRaycastLayer:
+    serializedVersion: 2
+    m_Bits: 64
   View: 0
 --- !u!1 &7915900478090750199
 GameObject:
@@ -919,7 +924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7915900478090750196}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2813282833726267993}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Yaw Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
