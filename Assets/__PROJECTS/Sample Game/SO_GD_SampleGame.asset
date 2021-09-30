@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e62e82080346344b9d41d4a640b734f, type: 3}
+  m_Name: SO_GD_SampleGame
+  m_EditorClassIdentifier: 
+  GameName: Sample Game
+  OfflineScene:
+    sceneAsset: {fileID: 102900000, guid: 49cd83ce1dba58c41a2659d62036d442, type: 3}
+    scenePath: Assets/__PROJECTS/Sample Game/Scenes/SG_01_Menu.unity
+  OnlineScene:
+    sceneAsset: {fileID: 102900000, guid: a43de47838c059941aa8000d578ba92b, type: 3}
+    scenePath: Assets/__PROJECTS/Sample Game/Scenes/SG_02_Game.unity
+  Prefabs:
+  - {fileID: 6828382428886516277, guid: 6bea2c45432657c4995817d969c0665d, type: 3}
+  ControllerOverride: {fileID: 0}
+  ShouldHostOnStart: 0

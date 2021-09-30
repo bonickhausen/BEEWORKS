@@ -1,0 +1,11 @@
+*.csproj
+*.sln
+.idea/
+Library/
+obj/
+Logs/
+Assets/Editor/x64/Bakery/
+Assets/Character Movement Fundamentals/
+Assets/Plugins/Sirenix/
+Assets/Bakery/
+Packages/packages-lock.json

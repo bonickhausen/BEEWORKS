@@ -1,0 +1,16 @@
+{
+    "name": "ASMDEF_SampleGame",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ab0f0ec154e34c04b96043087605c361"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
