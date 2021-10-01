@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PawnViewRigFPSTPS : PawnViewRigRotation
@@ -7,6 +9,8 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	[Header("Objects")]
 	public GameObject ViewFirst;
 	public GameObject ViewThird;
+	public CinemachineVirtualCamera VcamFPS;
+	public CinemachineVirtualCamera VcamTPS;
 	[Header("Settings")]
 	public float ThirdPersonDistance = 2.75f;
 	public float ThirdPersonRaycastRadius = 0.5f;
@@ -21,6 +25,16 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	public override bool ShouldShowSelfRenderer()
 	{
 		return View == ViewType.THIRD_PERSON;
+	}
+
+	public override Transform FetchAimTransform()
+	{
+		return View switch
+		{
+			ViewType.FIRST_PERSON => VcamFPS.transform,
+			ViewType.THIRD_PERSON => VcamTPS.transform,
+			_ => throw new ArgumentOutOfRangeException()
+		};
 	}
 
 	protected override void Initialize()

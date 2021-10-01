@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHoldable : ItemBase
+public static class CORE_Delegates
 {
-	/*public HoldType HoldType;*/
+    public delegate void VoidDelegate();
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public abstract class PawnControllerBase : NetworkThing
 {
+	[Header("State")]
 	[SyncVar]
 	public string ControllerName;
 	[SyncVar]

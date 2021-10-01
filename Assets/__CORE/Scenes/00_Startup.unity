@@ -200,8 +200,8 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/__PROJECTS/Sample Game/Scenes/SG_01_Menu.unity
-  onlineScene: Assets/__PROJECTS/Sample Game/Scenes/SG_02_Game.unity
+  offlineScene: Assets/__PROJECTS/Shootergame/Scenes/SG_01_Menu.unity
+  onlineScene: Assets/__PROJECTS/Shootergame/Scenes/SG_02_Game.unity
   transport: {fileID: 952204973}
   networkAddress: localhost
   maxConnections: 100
@@ -213,6 +213,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 7915900477804867716, guid: 6bea2c45432657c4995817d969c0665d, type: 3}
+  - {fileID: 5272317947492471101, guid: a204e33aed3be7c47b0dc333a05b26af, type: 3}
 --- !u!114 &952204975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameDefinition: {fileID: 11400000, guid: 077e969f97780ae4595ca8984721cda7, type: 2}
-  GlobalPrefabs: []
+  GlobalPrefabs:
+  - {fileID: 0}
   DefaultController: {fileID: 7647314479770379858, guid: f4653a4a1a092194ba4433c64049f04c, type: 3}
 --- !u!114 &952204976
 MonoBehaviour:

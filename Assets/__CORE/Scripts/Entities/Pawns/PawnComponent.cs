@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public abstract class PawnComponent : MonoBehaviour
+public abstract class PawnComponent : NetworkThing
 {
 	[Header("Component Settings")]
 	public bool IsEnabled = true;
@@ -39,7 +40,7 @@ public abstract class PawnComponent : MonoBehaviour
 	public virtual void OnPossessionEnded()
 	{ }
 
-	protected bool IsOwner()
+	protected new bool IsOwner()
 	{
 		return _pawn.HasAuthority();
 	}

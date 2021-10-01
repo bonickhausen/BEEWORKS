@@ -23,7 +23,7 @@ public class CORE_ConsoleCommands : MonoBehaviour
 		Pawn pawn = player.CurrentPawn;
 		if (pawn == null) return;
 
-		PawnViewRigFPSTPS view = pawn.GetPawnComponent<PawnViewRigFPSTPS>();
+		PawnViewRigFPSTPS view = pawn.GetComponent<PawnViewRigFPSTPS>();
 		if (view == null) return;
 
 		view.View = view.View switch

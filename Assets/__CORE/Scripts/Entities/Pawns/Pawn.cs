@@ -34,20 +34,6 @@ public class Pawn : NetworkThing
 		return _nid.hasAuthority;
 	}
 
-	public T GetPawnComponent<T>()
-	{
-		for (int index = 0; index < _components.Length; index++)
-		{
-			PawnComponent c = _components[index];
-			if (c.GetType() == typeof(T))
-			{
-				return (T) (object) c;
-			}
-		}
-
-		return default;
-	}
-
 	private void Update()
 	{
 		if (_nid.hasAuthority) OwnerUpdate();

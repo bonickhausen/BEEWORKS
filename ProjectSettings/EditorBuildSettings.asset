@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/__CORE/Scenes/00_Startup.unity
     guid: 1c398b6fd4af08445b1f547e3dfcd4c4
   - enabled: 1
-    path: Assets/__PROJECTS/Sample Game/Scenes/SG_01_Menu.unity
+    path: Assets/__PROJECTS/Shootergame/Scenes/SG_01_Menu.unity
     guid: 49cd83ce1dba58c41a2659d62036d442
   - enabled: 1
-    path: Assets/__PROJECTS/Sample Game/Scenes/SG_02_Game.unity
+    path: Assets/__PROJECTS/Shootergame/Scenes/SG_02_Game.unity
     guid: a43de47838c059941aa8000d578ba92b
   m_configObjects: {}

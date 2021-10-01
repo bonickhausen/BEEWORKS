@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public abstract class ItemBase : NetworkBehaviour, IInteractable
+public abstract class ItemBase : NetworkThing, IInteractable
 {
+	[Header("Objects")]
+	public GameObject PickupableObject;
 	[Header("Settings")]
 	public string ItemName;
 	[Header("State")]
 	[SyncVar]
 	public uint CurrentHolder;
 
+	private uint _holderLastFrame;
 
 	public bool CanUse(Pawn pawn)
 	{
@@ -19,7 +23,8 @@ public abstract class ItemBase : NetworkBehaviour, IInteractable
 
 	public void Use(Pawn pawn)
 	{
-		Debug.LogError("AEIOU");
+		PawnInventory pi = pawn.GetComponent<PawnInventory>();
+		pi.TryAddItemToInventory(this);
 	}
 
 	public string GetInteractionMessage()
@@ -29,6 +34,26 @@ public abstract class ItemBase : NetworkBehaviour, IInteractable
 
 	public bool IsBeingHeld()
 	{
-		return CurrentHolder == 0;
+		return CurrentHolder != 0;
+	}
+
+	private void Update()
+	{
+		if (CurrentHolder != _holderLastFrame)
+		{
+			OnHolderChanged();
+		}
+
+		_holderLastFrame = CurrentHolder;
+
+		void OnHolderChanged()
+		{
+			TogglePickupableObject(CurrentHolder <= 0);
+		}
+	}
+
+	public void TogglePickupableObject(bool isOn)
+	{
+		PickupableObject.SetActive(isOn);
 	}
 }

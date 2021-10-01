@@ -10,6 +10,7 @@ public abstract class PawnViewBase : PawnComponent
 	protected PawnMotor _motor;
 
 	public abstract bool ShouldShowSelfRenderer();
+	public abstract Transform FetchAimTransform();
 
 	protected override void Initialize()
 	{
