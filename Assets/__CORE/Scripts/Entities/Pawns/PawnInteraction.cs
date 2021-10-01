@@ -7,8 +7,10 @@ public class PawnInteraction : PawnComponent
 	public LayerMask Mask;
 	public float InteractionDistance = 2f;
 
-	public IInteractable _currentInteractable;
-
+	public CORE_Delegates.VoidDelegate Evnt_OnInteractableChanged;
+	
+	private IInteractable _currentInteractable;
+	private IInteractable _interactableLastFrame;
 	private PawnViewBase _view;
 	private float _lastUseTime;
 
@@ -20,14 +22,34 @@ public class PawnInteraction : PawnComponent
 		_view = _pawn.GetComponent<PawnViewBase>();
 	}
 
+	public IInteractable GetCurrentInteractable()
+	{
+		return _currentInteractable;
+	}
+
 	public override void Tick()
 	{
-		FetchInteractable();
+		if (IsOwner())
+		{
+			FetchInteractable();	
+		}
 
+		if (_currentInteractable != _interactableLastFrame)
+		{
+			OnInteractableChanged();	
+		}
+
+		_interactableLastFrame = _currentInteractable;
+		
 		if (_cmd.Interact)
 		{
 			TryInteract();
 		}
+	}
+
+	private void OnInteractableChanged()
+	{
+		Evnt_OnInteractableChanged?.Invoke();
 	}
 
 	private void FetchInteractable()
@@ -50,11 +72,11 @@ public class PawnInteraction : PawnComponent
 	private void TryInteract()
 	{
 		if (_currentInteractable == null) return;
-		
+
 		if (!_currentInteractable.CanUse(_pawn)) return;
-		
+
 		if (Time.timeSinceLevelLoad < _lastUseTime + USE_TIME_INTERVAL) return;
-		
+
 		_currentInteractable.Use(_pawn);
 
 		_currentInteractable = null;

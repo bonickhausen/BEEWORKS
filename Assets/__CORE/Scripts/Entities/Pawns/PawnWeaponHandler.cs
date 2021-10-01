@@ -1,17 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 public class PawnWeaponHandler : PawnComponent
 {
+	[SyncVar]
+	public int CurrentWeaponSlot;
+
+	public ItemWeapon CurrentWeapon { get; private set; }
+
+	private PawnViewRigFPSTPS _viewFps;
 	private PawnInventory _inventory;
 	private ItemWeapon[] _weapons;
+	private short _lastWeaponSwapAttempt;
+
+	private int _lastFrameWeaponSlot;
 
 	protected override void Initialize()
 	{
 		base.Initialize();
+		_viewFps = GetComponent<PawnViewRigFPSTPS>();
 		_inventory = GetComponent<PawnInventory>();
-		_inventory.OnItemArrayChanged += OnItemArrayChanged;
+		_inventory.Evnt_OnItemArrayChanged += OnItemArrayChanged;
 		OnItemArrayChanged();
 	}
 
@@ -39,5 +50,70 @@ public class PawnWeaponHandler : PawnComponent
 		}
 
 		_weapons = weapons.ToArray();
+	}
+
+	public override void Tick()
+	{
+		base.Tick();
+
+		if (IsOwner())
+		{
+			CheckForWeaponSwapWish();
+		}
+
+		CheckForChanges();
+	}
+
+	private void CheckForChanges()
+	{
+		if (CurrentWeaponSlot != _lastFrameWeaponSlot)
+		{
+			OnWeaponChanged();
+		}
+
+		_lastFrameWeaponSlot = CurrentWeaponSlot;
+
+		void OnWeaponChanged()
+		{
+			CurrentWeapon = GetWeaponInSlot(CurrentWeaponSlot);
+
+			if (_viewFps && _viewFps.FirstPersonViewModelParent)
+			{
+				CurrentWeapon.AttachViewModelToTransform(_viewFps.FirstPersonViewModelParent);
+			}
+		}
+	}
+
+	private void CheckForWeaponSwapWish()
+	{
+		if (_cmd.SlotNumber > 0 && _cmd.SlotNumber != CurrentWeaponSlot && _cmd.SlotNumber != _lastWeaponSwapAttempt)
+		{
+			TrySwapWeapon(_cmd.SlotNumber);
+			_lastWeaponSwapAttempt = _cmd.SlotNumber;
+		}
+
+		if (_cmd.SlotNumber <= 0) _lastWeaponSwapAttempt = 0;
+
+		_cmd.SlotNumber = 0;
+	}
+
+	[Command(requiresAuthority = false)]
+	private void TrySwapWeapon(int slot)
+	{
+		ItemWeapon w = GetWeaponInSlot(slot);
+		if (w) CurrentWeaponSlot = slot;
+	}
+
+	private ItemWeapon GetWeaponInSlot(int slot)
+	{
+		if (_weapons != null && _weapons.Length > 0)
+		{
+			foreach (ItemWeapon w in _weapons)
+			{
+				if (w.Slot == slot) return w;
+			}
+		}
+
+		return null;
 	}
 }

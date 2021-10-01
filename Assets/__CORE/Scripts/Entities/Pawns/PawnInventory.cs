@@ -7,7 +7,7 @@ public class PawnInventory : PawnComponent
 {
 	public SyncList<uint> ItemIds = new();
 
-	public CORE_Delegates.VoidDelegate OnItemArrayChanged;
+	public CORE_Delegates.VoidDelegate Evnt_OnItemArrayChanged;
 	
 	private ItemBase[] _items;
 
@@ -44,7 +44,7 @@ public class PawnInventory : PawnComponent
 			}
 		}
 		
-		OnItemArrayChanged?.Invoke();
+		Evnt_OnItemArrayChanged?.Invoke();
 	}
 
 	public void TryAddItemToInventory(ItemBase i)

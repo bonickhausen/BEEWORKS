@@ -7,4 +7,5 @@ public struct PawnCommand
 	public bool Attack;
 	public bool Interact;
 	public bool Jump;
+	public short SlotNumber;
 }

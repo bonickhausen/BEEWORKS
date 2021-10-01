@@ -11,6 +11,7 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	public GameObject ViewThird;
 	public CinemachineVirtualCamera VcamFPS;
 	public CinemachineVirtualCamera VcamTPS;
+	public Transform FirstPersonViewModelParent;
 	[Header("Settings")]
 	public float ThirdPersonDistance = 2.75f;
 	public float ThirdPersonRaycastRadius = 0.5f;

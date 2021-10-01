@@ -5,9 +5,12 @@ Library/
 obj/
 Logs/
 Assets/Editor/x64/Bakery/
+Assets/Plugins/DevConsole/
 Assets/Character Movement Fundamentals/
 Assets/Plugins/Sirenix/
 Assets/Bakery/
 Packages/packages-lock.json
 Temp/
 BEEWORKS.sln.DotSettings.user
+Assets/_COMMON ART ASSETS/
+Assets/TextMesh Pro/
