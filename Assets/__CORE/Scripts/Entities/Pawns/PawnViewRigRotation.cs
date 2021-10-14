@@ -14,6 +14,11 @@ public abstract class PawnViewRigRotation : PawnViewBase
 	protected float _yaw;
 	protected float _pitch;
 
+	private Transform _chaseOverride;
+	private bool _hasChaseOverride;
+	private Vector3 _chaseTargetOffset;
+
+
 	public override void Tick()
 	{
 		CollectInput();
@@ -33,12 +38,26 @@ public abstract class PawnViewRigRotation : PawnViewBase
 
 	private void MoveRig()
 	{
-		ViewRig.position = _motor.GetTransform().position + (Vector3.up * HeightOffset);
+		Vector3 targetPos = _motor.GetTransform().position + (Vector3.up * HeightOffset);
+
+		if (_hasChaseOverride)
+		{
+			targetPos = _chaseOverride.position + _chaseOverride.TransformDirection(_chaseTargetOffset);
+		}
+		
+		ViewRig.position = targetPos;
 	}
 
 	private void RotateRig()
 	{
 		YawTransform.localEulerAngles = new Vector3(0, _yaw, 0);
 		PitchTransform.localEulerAngles = new Vector3(_pitch, 0f, 0f);
+	}
+
+	protected void SetChaseOverrideTransform(Transform t, Vector3 offset)
+	{
+		_chaseOverride = t;
+		_chaseTargetOffset = offset;
+		_hasChaseOverride = (_chaseOverride != null);
 	}
 }

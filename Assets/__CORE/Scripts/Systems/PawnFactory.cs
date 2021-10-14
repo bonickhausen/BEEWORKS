@@ -14,8 +14,10 @@ public class PawnFactory : NetworkBehaviour
 		Instance = this;
 
 		_pawns = new List<Pawn>();
-		foreach (NetworkIdentity nid in GameHandler.Instance.GameDefinition.Prefabs)
+		for (int index = 0; index < GameHandler.Instance.GameDefinition.Prefabs.Length; index++)
 		{
+			NetworkIdentity nid = GameHandler.Instance.GameDefinition.Prefabs[index];
+			Debug.LogWarning(nid);
 			Pawn p = nid.GetComponent<Pawn>();
 			if (p != null)
 			{

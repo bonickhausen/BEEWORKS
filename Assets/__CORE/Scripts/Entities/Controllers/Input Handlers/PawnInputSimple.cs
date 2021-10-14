@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using IngameDebugConsole;
 using UnityEngine;
 
 public class PawnInputSimple : PawnInputBase
@@ -7,6 +8,8 @@ public class PawnInputSimple : PawnInputBase
 	public override PawnCommand GetCommand()
 	{
 		PawnCommand cmd = new();
+
+		if (DebugLogManager.Instance.IsLogWindowVisible) return cmd;
 
 		bool up = Input.GetKey(KeyCode.W);
 		bool down = Input.GetKey(KeyCode.S);

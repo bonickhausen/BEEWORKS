@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using IngameDebugConsole;
 using Mirror;
 using Tymski;
 using UnityEditor;
@@ -109,13 +110,13 @@ public class GameHandler : MonoBehaviour
 		_netMan.StartClient();
 	}
 
-	[SickDev.CommandSystem.Command(alias = "host")]
+	[ConsoleMethod( "host", "Host a server." ), UnityEngine.Scripting.Preserve]
 	public static void SvHost()
 	{
 		Instance.Host();
 	}
 
-	[SickDev.CommandSystem.Command(alias = "join")]
+	[ConsoleMethod( "join", "Join a server." ), UnityEngine.Scripting.Preserve]
 	public static void ClJoin(string ip)
 	{
 		Instance.Join(ip);

@@ -1,20 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SickDev.CommandSystem;
-using SickDev.DevConsole;
+using IngameDebugConsole;
 using UnityEngine;
 
 public class CORE_ConsoleCommands : MonoBehaviour
 {
 	private void Start()
 	{
-		DevConsole.singleton.AddCommand(new ActionCommand(ToggleThirdPerson)
+		/*DevConsole.singleton.AddCommand(new ActionCommand(ToggleThirdPerson)
 		{
 			alias = "cam_tp"
-		});
+		});*/
 	}
 
+	[ConsoleMethod( "cam_tp", "Toggles third person view." ), UnityEngine.Scripting.Preserve]
 	public static void ToggleThirdPerson()
 	{
 		PawnControllerPlayer player = PawnControllerPlayer.LocalInstance;

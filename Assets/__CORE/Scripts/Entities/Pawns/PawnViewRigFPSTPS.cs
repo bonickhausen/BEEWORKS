@@ -12,13 +12,17 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	public CinemachineVirtualCamera VcamFPS;
 	public CinemachineVirtualCamera VcamTPS;
 	public Transform FirstPersonViewModelParent;
+	public Transform ThirdPersonPanParent;
 	[Header("Settings")]
 	public float ThirdPersonDistance = 2.75f;
+	public float ThirdPersonHeight = 1f;
+	public float ThirdPersonPan = 0f;
 	public float ThirdPersonRaycastRadius = 0.5f;
 	public LayerMask ThirdPersonRaycastLayer;
 	[Header("State")]
 	public ViewType View;
 
+	private PawnRenderer _renderer;
 	private ViewType _lastViewType;
 	private Transform _thirdPersonDistanceTransform;
 	private Transform _thirdPersonOriginTransform;
@@ -41,9 +45,17 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	protected override void Initialize()
 	{
 		base.Initialize();
+		_renderer = GetComponent<PawnRenderer>();
 		_thirdPersonOriginTransform = ViewThird.transform;
 		_thirdPersonDistanceTransform = ViewThird.transform.GetChild(0);
 		ChangeView();
+	}
+
+	private void OnValidate()
+	{
+#if UNITY_EDITOR
+		ChangeView();
+#endif
 	}
 
 	public override void Tick()
@@ -75,6 +87,10 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 			Vector3 pos = _thirdPersonDistanceTransform.localPosition;
 			pos.z = dist;
 			_thirdPersonDistanceTransform.localPosition = pos;
+
+			Vector3 panPos = ThirdPersonPanParent.localPosition;
+			panPos.x = ThirdPersonPan;
+			ThirdPersonPanParent.localPosition = panPos;
 		}
 
 		void CollisionCheck()
@@ -102,5 +118,14 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	{
 		ViewFirst.SetActive(View == ViewType.FIRST_PERSON);
 		ViewThird.SetActive(View == ViewType.THIRD_PERSON);
+
+		if (View == ViewType.THIRD_PERSON)
+		{
+			SetChaseOverrideTransform(_renderer.TransformRenderer, Vector3.up * ThirdPersonHeight);
+		}
+		else
+		{
+			SetChaseOverrideTransform(null, Vector3.zero);
+		}
 	}
 }

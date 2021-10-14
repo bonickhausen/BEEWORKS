@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,54 +7,141 @@ using UnityEngine.Animations;
 public class ItemWeapon : ItemHoldable
 {
 	[Header("Weapon Setup")]
-	public PositionConstraint PosConstraint;
-	public RotationConstraint RotConstraint;
-	public ScaleConstraint ScaConstraint;
+	public PositionConstraint VModelPosConstraint;
+	public RotationConstraint VModelRotConstraint;
+	public ScaleConstraint VModelScaConstraint;
+	public PositionConstraint WModelPosConstraint;
+	public RotationConstraint WModelRotConstraint;
+	public ScaleConstraint WModelScaConstraint;
 	[Header("Weapon Settings")]
 	[Range(1, 9)]
 	public uint Slot;
 	public int Damage;
 	public float AttackInterval;
 
-	public void AttachViewModelToTransform(Transform t)
+	private Transform _attachedViewmodelTransform;
+	private GameObject _viewModelObject;
+	private Transform _attachedWorldmodelTransform;
+	private GameObject _worldModelObject;
+
+	private void Awake()
 	{
+		_viewModelObject = VModelPosConstraint.gameObject;
+		_worldModelObject = WModelPosConstraint.gameObject;
+	}
+
+	protected override void Tick()
+	{
+		base.Tick();
+
+		EvaluateViewmodelVisibility();
+		EvaluateWorldmodelVisibility();
+	}
+
+	private void EvaluateViewmodelVisibility()
+	{
+		bool shouldHide = _attachedViewmodelTransform == null || _attachedViewmodelTransform.gameObject.activeInHierarchy == false;
+
+		_viewModelObject.SetActive(!shouldHide);
+	}
+
+	private void EvaluateWorldmodelVisibility()
+	{
+		bool shouldHide = _attachedWorldmodelTransform == null || _attachedWorldmodelTransform.gameObject.activeInHierarchy == false;
+
+		_worldModelObject.SetActive(!shouldHide);
+		
+		if (!shouldHide)
+		{
+			WModelPosConstraint.translationOffset = _attachedWorldmodelTransform.TransformVector(PositionOffset);
+		}
+	}
+
+	public void AttachWorldModelToTransform(Transform t)
+	{
+		_attachedWorldmodelTransform = t;
+
 		ConstraintSource cs = new() {sourceTransform = t, weight = 1f};
 
 		ClearAllConstraints();
 		AssignAllConstraints();
-		PosConstraint.gameObject.SetActive(true);
+		WModelPosConstraint.gameObject.SetActive(true);
 
 		void ClearAllConstraints()
 		{
-			for (int i = 0; i < PosConstraint.sourceCount; i++)
+			for (int i = 0; i < WModelPosConstraint.sourceCount; i++)
 			{
-				PosConstraint.RemoveSource(0);
+				WModelPosConstraint.RemoveSource(0);
 			}
-			for (int i = 0; i < RotConstraint.sourceCount; i++)
+			for (int i = 0; i < WModelRotConstraint.sourceCount; i++)
 			{
-				RotConstraint.RemoveSource(0);
+				WModelRotConstraint.RemoveSource(0);
 			}
-			for (int i = 0; i < ScaConstraint.sourceCount; i++)
+			for (int i = 0; i < WModelScaConstraint.sourceCount; i++)
 			{
-				ScaConstraint.RemoveSource(0);
+				WModelScaConstraint.RemoveSource(0);
 			}
 		}
 
 		void AssignAllConstraints()
 		{
-			PosConstraint.AddSource(cs);
-			RotConstraint.AddSource(cs);
-			ScaConstraint.AddSource(cs);
+			WModelPosConstraint.AddSource(cs);
+			WModelRotConstraint.AddSource(cs);
+			WModelScaConstraint.AddSource(cs);
 
-			PosConstraint.translationOffset = Vector3.zero;
-			RotConstraint.rotationOffset = Vector3.zero;
-			ScaConstraint.scaleOffset = Vector3.one;
-			PosConstraint.weight = 1f;
-			RotConstraint.weight = 1f;
-			ScaConstraint.weight = 1f;
-			PosConstraint.constraintActive = true;
-			RotConstraint.constraintActive = true;
-			ScaConstraint.constraintActive = true;
+			WModelPosConstraint.translationOffset = Vector3.zero;
+			WModelRotConstraint.rotationOffset = Vector3.zero;
+			WModelScaConstraint.scaleOffset = Vector3.one;
+			WModelPosConstraint.weight = 1f;
+			WModelRotConstraint.weight = 1f;
+			WModelScaConstraint.weight = 1f;
+			WModelPosConstraint.constraintActive = true;
+			WModelRotConstraint.constraintActive = true;
+			WModelScaConstraint.constraintActive = true;
+		}
+	}
+
+	public void AttachViewModelToTransform(Transform t)
+	{
+		_attachedViewmodelTransform = t;
+
+		ConstraintSource cs = new() {sourceTransform = t, weight = 1f};
+
+		ClearAllConstraints();
+		AssignAllConstraints();
+		VModelPosConstraint.gameObject.SetActive(true);
+
+		void ClearAllConstraints()
+		{
+			for (int i = 0; i < VModelPosConstraint.sourceCount; i++)
+			{
+				VModelPosConstraint.RemoveSource(0);
+			}
+			for (int i = 0; i < VModelRotConstraint.sourceCount; i++)
+			{
+				VModelRotConstraint.RemoveSource(0);
+			}
+			for (int i = 0; i < VModelScaConstraint.sourceCount; i++)
+			{
+				VModelScaConstraint.RemoveSource(0);
+			}
+		}
+
+		void AssignAllConstraints()
+		{
+			VModelPosConstraint.AddSource(cs);
+			VModelRotConstraint.AddSource(cs);
+			VModelScaConstraint.AddSource(cs);
+
+			VModelPosConstraint.translationOffset = Vector3.zero;
+			VModelRotConstraint.rotationOffset = Vector3.zero;
+			VModelScaConstraint.scaleOffset = Vector3.one;
+			VModelPosConstraint.weight = 1f;
+			VModelRotConstraint.weight = 1f;
+			VModelScaConstraint.weight = 1f;
+			VModelPosConstraint.constraintActive = true;
+			VModelRotConstraint.constraintActive = true;
+			VModelScaConstraint.constraintActive = true;
 		}
 	}
 }

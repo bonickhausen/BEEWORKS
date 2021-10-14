@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PawnWeaponHandler : PawnComponent
 {
+	[Header("Objects")]
+	public Transform WorldModelParent;
+	[Header("Status")]
 	[SyncVar]
 	public int CurrentWeaponSlot;
 
@@ -81,6 +84,8 @@ public class PawnWeaponHandler : PawnComponent
 			{
 				CurrentWeapon.AttachViewModelToTransform(_viewFps.FirstPersonViewModelParent);
 			}
+			
+			CurrentWeapon.AttachWorldModelToTransform(WorldModelParent);
 		}
 	}
 

@@ -8,8 +8,13 @@ public class PawnMotor : PawnComponent
 {
 	public AdvancedWalkerController Controller;
 
+	public CORE_Delegates.VoidDelegate Evnt_OnGroundedChanged;
+
+	public Vector3 Direction { get; private set; }
+
 	private PawnMotorInputRelay _inputRelay;
 	private Rigidbody _rb;
+	private bool _wasGroundedLastFrame;
 
 	private void Awake()
 	{
@@ -20,6 +25,11 @@ public class PawnMotor : PawnComponent
 	public Transform GetTransform()
 	{
 		return Controller.transform;
+	}
+
+	public bool IsGrounded()
+	{
+		return Controller.IsGrounded();
 	}
 
 	public Rigidbody GetRigidbody()
@@ -41,7 +51,29 @@ public class PawnMotor : PawnComponent
 
 	public override void Tick()
 	{
-		_inputRelay.SetCommand(_cmd);
-		_inputRelay.gameObject.SetActive(IsOwner());
+		if (IsOwner())
+		{
+			_inputRelay.SetCommand(_cmd);
+			bool isGrounded = IsGrounded();
+
+			if (isGrounded != _wasGroundedLastFrame)
+			{
+				OnGroundedChanged();
+			}
+
+			_wasGroundedLastFrame = isGrounded;
+
+			Vector3 cVel = GetWorldVelocity();
+			
+			if (cVel.magnitude > 0)
+			{
+				Direction = cVel.normalized;
+			}
+		}
+
+		void OnGroundedChanged()
+		{
+			Evnt_OnGroundedChanged?.Invoke();
+		}
 	}
 }

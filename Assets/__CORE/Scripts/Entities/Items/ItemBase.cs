@@ -50,6 +50,13 @@ public abstract class ItemBase : NetworkThing, IInteractable
 		{
 			TogglePickupableObject(CurrentHolder <= 0);
 		}
+		
+		Tick();
+	}
+
+	protected virtual void Tick()
+	{
+		
 	}
 
 	public void TogglePickupableObject(bool isOn)
