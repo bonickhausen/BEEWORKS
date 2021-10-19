@@ -41,7 +41,7 @@ public class ItemWeapon : ItemHoldable
 	private void EvaluateViewmodelVisibility()
 	{
 		bool shouldHide = _attachedViewmodelTransform == null || _attachedViewmodelTransform.gameObject.activeInHierarchy == false;
-
+		
 		_viewModelObject.SetActive(!shouldHide);
 	}
 
