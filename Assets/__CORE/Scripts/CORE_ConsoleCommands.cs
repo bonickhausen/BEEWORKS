@@ -6,14 +6,6 @@ using UnityEngine;
 
 public class CORE_ConsoleCommands : MonoBehaviour
 {
-	private void Start()
-	{
-		/*DevConsole.singleton.AddCommand(new ActionCommand(ToggleThirdPerson)
-		{
-			alias = "cam_tp"
-		});*/
-	}
-
 	[ConsoleMethod( "cam_tp", "Toggles third person view." ), UnityEngine.Scripting.Preserve]
 	public static void ToggleThirdPerson()
 	{

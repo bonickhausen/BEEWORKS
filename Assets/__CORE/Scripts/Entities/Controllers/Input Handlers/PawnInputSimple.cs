@@ -35,7 +35,8 @@ public class PawnInputSimple : PawnInputBase
 		}
 
 		cmd.Movement = wishVector;
-		cmd.Attack = Input.GetMouseButtonDown(0);
+		cmd.Attack = Input.GetMouseButton(0);
+		cmd.AltAttack = Input.GetMouseButton(1);
 		cmd.Interact = Input.GetKeyDown(KeyCode.E);
 		cmd.Jump = Input.GetKey(KeyCode.Space);
 

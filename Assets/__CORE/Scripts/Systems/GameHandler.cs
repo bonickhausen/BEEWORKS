@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using IngameDebugConsole;
 using Mirror;
 using Tymski;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -82,7 +84,7 @@ public class GameHandler : MonoBehaviour
 					_netMan.spawnPrefabs.Add(p.gameObject);
 				}
 			}
-			foreach (NetworkIdentity p in GameDefinition.Prefabs)
+			foreach (NetworkIdentity p in GameDefinition.NetworkedPrefabs)
 			{
 				if (p != null)
 				{
@@ -110,13 +112,13 @@ public class GameHandler : MonoBehaviour
 		_netMan.StartClient();
 	}
 
-	[ConsoleMethod( "host", "Host a server." ), UnityEngine.Scripting.Preserve]
+	[ConsoleMethod("host", "Host a server."), UnityEngine.Scripting.Preserve]
 	public static void SvHost()
 	{
 		Instance.Host();
 	}
 
-	[ConsoleMethod( "join", "Join a server." ), UnityEngine.Scripting.Preserve]
+	[ConsoleMethod("join", "Join a server."), UnityEngine.Scripting.Preserve]
 	public static void ClJoin(string ip)
 	{
 		Instance.Join(ip);

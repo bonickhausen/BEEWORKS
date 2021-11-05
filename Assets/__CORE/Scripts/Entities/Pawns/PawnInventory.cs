@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PawnInventory : PawnComponent
 {
-	public SyncList<uint> ItemIds = new();
+	public readonly SyncList<uint> ItemIds = new SyncList<uint>();
 
+	[ReadOnly]
+	public uint[] ReadonlyIds;
+	
 	public CORE_Delegates.VoidDelegate Evnt_OnItemArrayChanged;
 	
 	private ItemBase[] _items;
@@ -15,6 +19,16 @@ public class PawnInventory : PawnComponent
 	{
 		base.Initialize();
 		ItemIds.Callback += OnItemIdsChanged;
+		RegenerateInternalItemArray();
+	}
+
+	public override void Tick()
+	{
+		ReadonlyIds = new uint[ItemIds.Count];
+		for (int i = 0; i < ItemIds.Count; i++)
+		{
+			ReadonlyIds[i] = ItemIds[i];
+		}
 	}
 
 	public ItemBase[] GetItems()
@@ -27,6 +41,7 @@ public class PawnInventory : PawnComponent
 		RegenerateInternalItemArray();
 	}
 
+	[ContextMenu("aeiou")]
 	private void RegenerateInternalItemArray()
 	{
 		_items = new ItemBase[ItemIds.Count];
@@ -40,10 +55,11 @@ public class PawnInventory : PawnComponent
 			}
 			else
 			{
+				Debug.Log("NID IS NULL!!");
 				_items[i] = null;
 			}
 		}
-		
+
 		Evnt_OnItemArrayChanged?.Invoke();
 	}
 

@@ -14,10 +14,9 @@ public class PawnFactory : NetworkBehaviour
 		Instance = this;
 
 		_pawns = new List<Pawn>();
-		for (int index = 0; index < GameHandler.Instance.GameDefinition.Prefabs.Length; index++)
+		for (int index = 0; index < GameHandler.Instance.GameDefinition.NetworkedPrefabs.Length; index++)
 		{
-			NetworkIdentity nid = GameHandler.Instance.GameDefinition.Prefabs[index];
-			Debug.LogWarning(nid);
+			NetworkIdentity nid = GameHandler.Instance.GameDefinition.NetworkedPrefabs[index];
 			Pawn p = nid.GetComponent<Pawn>();
 			if (p != null)
 			{
@@ -37,6 +36,10 @@ public class PawnFactory : NetworkBehaviour
 		if (controller.CurrentPawnId > 0) return;
 		
 		Pawn o = Instantiate(_pawns[pawnIndex]);
+		Transform spawn = GamemodeBase.Instance.GetSpawnPoint(controller);
+		Transform pawnTransform = o.transform;
+		pawnTransform.position = spawn.position;
+		pawnTransform.forward = spawn.forward;
 		NetworkServer.Spawn(o.gameObject, controller.connectionToClient);
 		controller.CurrentPawnId = o.netId;
 	}

@@ -213,7 +213,8 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 7915900477804867716, guid: 6bea2c45432657c4995817d969c0665d, type: 3}
+  - {fileID: 9114109598742839959, guid: 586b4d2f096514e4cb8f46435fc5cd5a, type: 3}
+  - {fileID: 8151040995162231773, guid: f13711bad28af784f96cad1e64982192, type: 3}
   - {fileID: 5272317947492471101, guid: a204e33aed3be7c47b0dc333a05b26af, type: 3}
 --- !u!114 &952204975
 MonoBehaviour:
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameDefinition: {fileID: 11400000, guid: 077e969f97780ae4595ca8984721cda7, type: 2}
   GlobalPrefabs:
-  - {fileID: 0}
+  - {fileID: 660797199895870213, guid: 586b4d2f096514e4cb8f46435fc5cd5a, type: 3}
   DefaultController: {fileID: 7647314479770379858, guid: f4653a4a1a092194ba4433c64049f04c, type: 3}
 --- !u!114 &952204976
 MonoBehaviour:
@@ -243,6 +244,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c375cf8676c949b7f14c0d63a564a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1154404244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154404246}
+  - component: {fileID: 1154404245}
+  m_Layer: 0
+  m_Name: clayxelHDRPPass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1154404245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154404244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  fadeRadius: 0
+  priority: 0
+  customPasses:
+  - rid: 6878020387764436992
+  injectionPoint: 0
+  m_TargetCamera: {fileID: 0}
+  useTargetCamera: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6878020387764436992
+      type: {class: ClayxelsHDRPPass, ns: , asm: Assembly-CSharp}
+      data:
+        m_Name: Custom Pass
+        enabled: 1
+        targetColorBuffer: 0
+        targetDepthBuffer: 0
+        clearFlags: 0
+        passFoldout: 0
+        m_Version: 0
+--- !u!4 &1154404246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154404244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483173396
 GameObject:
   m_ObjectHideFlags: 0

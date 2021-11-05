@@ -8,6 +8,8 @@ public abstract class PawnComponent : NetworkThing
 	[Header("Component Settings")]
 	public bool IsEnabled = true;
 
+	public bool IsInitialized { get; private set; }
+	
 	protected Pawn _pawn;
 	protected PawnCommand _cmd;
 
@@ -15,6 +17,7 @@ public abstract class PawnComponent : NetworkThing
 	{
 		_pawn = p;
 		Initialize();
+		IsInitialized = true;
 	}
 
 	public void SendInputCommand(PawnCommand cmd)

@@ -19,8 +19,8 @@ MonoBehaviour:
   OnlineScene:
     sceneAsset: {fileID: 102900000, guid: a43de47838c059941aa8000d578ba92b, type: 3}
     scenePath: Assets/__PROJECTS/Shootergame/Scenes/SG_02_Game.unity
-  Prefabs:
-  - {fileID: 6828382428886516277, guid: 6bea2c45432657c4995817d969c0665d, type: 3}
+  NetworkedPrefabs:
+  - {fileID: 4758040594043969900, guid: f13711bad28af784f96cad1e64982192, type: 3}
   - {fileID: 5272317947492471096, guid: a204e33aed3be7c47b0dc333a05b26af, type: 3}
   ControllerOverride: {fileID: 0}
   ShouldHostOnStart: 0

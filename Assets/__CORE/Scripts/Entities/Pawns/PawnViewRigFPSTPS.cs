@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Mirror;
 using UnityEngine;
 
 public class PawnViewRigFPSTPS : PawnViewRigRotation
@@ -26,6 +27,7 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	private ViewType _lastViewType;
 	private Transform _thirdPersonDistanceTransform;
 	private Transform _thirdPersonOriginTransform;
+
 
 	public override bool ShouldShowSelfRenderer()
 	{
@@ -65,6 +67,7 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 		CheckForChanges();
 		AdjustDistance();
 		CollisionCheck();
+		
 
 		void CheckForChanges()
 		{
@@ -118,6 +121,8 @@ public class PawnViewRigFPSTPS : PawnViewRigRotation
 	{
 		ViewFirst.SetActive(View == ViewType.FIRST_PERSON);
 		ViewThird.SetActive(View == ViewType.THIRD_PERSON);
+
+		if (Application.isPlaying == false) return;
 
 		if (View == ViewType.THIRD_PERSON)
 		{

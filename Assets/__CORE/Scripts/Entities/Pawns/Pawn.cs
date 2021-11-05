@@ -18,11 +18,15 @@ public class Pawn : NetworkThing
 
 	private void Awake()
 	{
+		gameObject.name = "Pawn - REMOTE";
 		OwnerOnlyObject.SetActive(false);
 		_components = GetComponents<PawnComponent>();
 		_mouseLockables = GetComponents<IMouseLockable>();
 		_nid = GetComponent<NetworkIdentity>();
+	}
 
+	private void Start()
+	{
 		foreach (PawnComponent c in _components)
 		{
 			c.Initialize(this);
@@ -65,6 +69,7 @@ public class Pawn : NetworkThing
 
 	public void OnPossessionBegin()
 	{
+		gameObject.name = "Pawn - LOCAL";
 		OwnerOnlyObject.SetActive(true);
 		foreach (PawnComponent c in _components)
 		{
@@ -74,6 +79,7 @@ public class Pawn : NetworkThing
 
 	public void OnPossessionEnd()
 	{
+		gameObject.name = "Pawn - REMOTE";
 		OwnerOnlyObject.SetActive(false);
 		foreach (PawnComponent c in _components)
 		{

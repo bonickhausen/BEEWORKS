@@ -14,7 +14,7 @@ public class SO_GameDef : ScriptableObject
 	public string GameName;
 	public SceneReference OfflineScene;
 	public SceneReference OnlineScene;
-	public NetworkIdentity[] Prefabs;
+	public NetworkIdentity[] NetworkedPrefabs;
 	[Header("Overrides")]
 	public PawnControllerBase ControllerOverride;
 

@@ -25,7 +25,10 @@ public class PawnControllerPlayer : PawnControllerBase
 
 		OwnerOnlyObject.SetActive(true);
 		LocalInstance = this;
-		RequestPawn();
+		if (GamemodeBase.Instance.CanAlwaysSpawnPawns())
+		{
+			RequestPawn();	
+		}
 	}
 
 	private void RequestPawn()
